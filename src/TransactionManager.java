@@ -6,4 +6,9 @@ public class TransactionManager {
 
 	}
 
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
