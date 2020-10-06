@@ -43,5 +43,19 @@ public class MoneyMarket extends Account {
 
 		return Double.parseDouble(strMonthlyFee);
 	}
+	
+	public String toString() {
+		
+		String accountInfo;
+		
+		if (withdrawals == 1) {
+			accountInfo = "*Money Market*" + super.toString() + withdrawals + " withdrawal";
+		}
+		else {
+			accountInfo = "*Money Market*" + super.toString() + withdrawals + " withdrawals";
+		}
+		
+		return accountInfo;
+	}
 
 }
