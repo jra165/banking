@@ -1,17 +1,21 @@
+import java.text.DecimalFormat;
 
 public class Savings extends Account {
-
-	public Savings(Profile holder, double balance, Date dateOpen) {
-		super(holder, balance, dateOpen);
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	private boolean isLoyal;
+	
+	public Savings(Profile holder, double balance, Date dateOpen, boolean isLoyal) {
+		super(holder, balance, dateOpen);
+		this.isLoyal = isLoyal;
+	}
 	
 	@Override
 	public double monthlyInterest() {
+		
+		DecimalFormat df = new DecimalFormat("0.00");
 		final double annualInterestRate = 0.0005;
 		int period = 12;
+		
 		final double monthlyInterestRate = annualInterestRate/period;
 		final double loyalInterestRate = 0.0035;
 		double monthlyInterest;
@@ -23,13 +27,16 @@ public class Savings extends Account {
 			monthlyInterest = getBalance() * monthlyInterestRate;
 		}
 		
+		String strMonthlyInterest = df.format(monthlyInterest);
 		
-		return monthlyInterest;
+		return Double.parseDouble(strMonthlyInterest);
+	
 	}
 
 	@Override
 	public double monthlyFee() {
 		
+		DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 300;
 		final double savingsMonthlyFee = 5;
@@ -40,8 +47,10 @@ public class Savings extends Account {
 		else {
 			monthlyFee = savingsMonthlyFee;
 		}
+		
+		String strMonthlyFee = df.format(monthlyFee);
 
-		return monthlyFee;
+		return Double.parseDouble(strMonthlyFee);
 		
 	}
 
