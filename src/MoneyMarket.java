@@ -2,11 +2,10 @@ import java.text.DecimalFormat;
 
 public class MoneyMarket extends Account {
 	
-	private int withdrawals;
+	private int withdrawals = 0;
 	
-	public MoneyMarket(Profile holder, double balance, Date dateOpen, int withdrawals) {
+	public MoneyMarket(Profile holder, double balance, Date dateOpen) {
 		super(holder, balance, dateOpen);
-		this.withdrawals = withdrawals;
 	}
 
 	@Override
@@ -36,7 +35,7 @@ public class MoneyMarket extends Account {
 			monthlyFee = 0;
 		}
 		else {
-			monthlyFee = moneyMarketMonthlyFee;
+			monthlyFee = moneyMarketMonthlyFee; 
 		}
 		
 		String strMonthlyFee = df.format(monthlyFee);
