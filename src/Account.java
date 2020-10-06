@@ -34,12 +34,9 @@ public abstract class Account {
 	
 	public String toString() { 
 		
-		//String accountType = "checking/savings/moneymarket";
 		String fname = this.holder.get_fname();
 		String lname = this.holder.get_lname();
 		String date = this.dateOpen.toString();
-		// special savings account or not
-		// direct deposit account or not
 		
 		String accountInfo = fname + " " + lname + "* $" + balance + "*" + date;
 		
