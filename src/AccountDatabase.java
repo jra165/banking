@@ -89,23 +89,92 @@ public class AccountDatabase {
 		return 0; 
 	}
 	
-	private void sortByDateOpen()  { 
+	// Selection Sort
+	private void sortByDateOpen()  { // sort in ascending order
+		int numAccounts = accounts.length;
+		Date firstDateOpen;
+		Date secondDateOpen;
+		
+		for (int i = 0; i < numAccounts-1; i++) {
+			
+			// Set left side index to min_idx
+			int min_idx = i;
+			
+			// Compare left side index with iterator j
+			for (int j = i+1; j < numAccounts; j++) {
+				
+				// Retrieve last name of two that you are comparing
+				firstDateOpen = accounts[j].getDateOpen();
+				secondDateOpen = accounts[min_idx].getDateOpen();
+				
+				if (firstDateOpen.compareTo(secondDateOpen) < 0) {
+					min_idx = j;
+				}
+			}
+			
+			Account temp = accounts[min_idx];
+			accounts[min_idx] = accounts[i];
+			accounts[i] = temp;
+		}
 		
 	}
 	
 	private void sortByLastName() { 
 		
+		int numAccounts = accounts.length;
+		String firstHolder_lname;
+		String secondHolder_lname;
+		
+		for (int i = 0; i < numAccounts-1; i++) {
+			
+			// Set left side index to min_idx
+			int min_idx = i;
+			
+			// Compare left side index with iterator j
+			for (int j = i+1; j < numAccounts; j++) {
+				
+				// Retrieve last name of two that you are comparing
+				firstHolder_lname = (accounts[j].getHolder()).get_lname();
+				secondHolder_lname = (accounts[min_idx].getHolder()).get_lname();
+				
+				if (firstHolder_lname.compareTo(secondHolder_lname) < 0) {
+					min_idx = j;
+				}
+			}
+			
+			Account temp = accounts[min_idx];
+			accounts[min_idx] = accounts[i];
+			accounts[i] = temp;
+
+			
+		}
 	}
 	
 	public void printByDateOpen() { 
+		
+		sortByDateOpen();
+		
+		for (int i = 0; i < accounts.length; i++) {
+			System.out.println(accounts[i].toString());
+		}
 		
 	}
 	
 	public void printByLastName() { 
 		
+		sortByLastName();
+		
+		for (int i = 0; i < accounts.length; i++) {
+			System.out.println(accounts[i].toString());
+		}
+		
 	}
 	
 	public void printAccounts() { 
+		
+		for (int i = 0; i < accounts.length; i++) {
+			System.out.println(accounts[i].toString());
+		}
 		
 	}
 	
