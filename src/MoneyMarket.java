@@ -1,26 +1,32 @@
+import java.text.DecimalFormat;
 
 public class MoneyMarket extends Account {
 	
-	public MoneyMarket(Profile holder, double balance, Date dateOpen) {
-		super(holder, balance, dateOpen);
-		// TODO Auto-generated constructor stub
-	}
-	
 	private int withdrawals;
+	
+	public MoneyMarket(Profile holder, double balance, Date dateOpen, int withdrawals) {
+		super(holder, balance, dateOpen);
+		this.withdrawals = withdrawals;
+	}
 
 	@Override
 	public double monthlyInterest() {
+		
+		DecimalFormat df = new DecimalFormat("0.00");
 		final double annualInterestRate = 0.0065;
 		int period = 12;
 		final double monthlyInterestRate = annualInterestRate/period;
 		double monthlyInterest = getBalance() * monthlyInterestRate;
 		
+		String strMonthlyInterest = df.format(monthlyInterest);
 		
-		return monthlyInterest;
+		return Double.parseDouble(strMonthlyInterest);
 	}
 
 	@Override
 	public double monthlyFee() {
+		
+		DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 2500;
 		final double moneyMarketMonthlyFee = 12;
@@ -32,8 +38,10 @@ public class MoneyMarket extends Account {
 		else {
 			monthlyFee = moneyMarketMonthlyFee;
 		}
+		
+		String strMonthlyFee = df.format(monthlyFee);
 
-		return monthlyFee;
+		return Double.parseDouble(strMonthlyFee);
 	}
 
 }
