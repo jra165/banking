@@ -50,5 +50,4 @@ public abstract class Account {
 	public abstract double monthlyInterest();
 	public abstract double monthlyFee();
 	
-
 }
