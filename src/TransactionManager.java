@@ -15,6 +15,7 @@ public class TransactionManager {
 	public void run() {
 		
 		Scanner sc = new Scanner(System.in);
+		System.out.println("Transaction processing starts.....");
 		AccountDatabase db = new AccountDatabase();
 		
 		while (sc.hasNext()) {
@@ -33,42 +34,78 @@ public class TransactionManager {
 			double balance = 0;
 			String date = "";
 			boolean special = false;
+			int open_tokens = 5;
+			int open_mm_tokens = 4;
 			
 			while(s.hasNext()) {
 				
 				//this is the 2-letter abbreviation at the start of every line
 				String com = s.next();
+				int count = 0;
 				
 				if(com.equals("OC") || com.equals("OS") || com.equals("OM")) {
-					fName = s.next();
-					lName = s.next();
-					balance = s.nextDouble();
-					date = s.next();
-					special = s.nextBoolean();
+					
+					if(s.hasNext()) {
+						fName = s.next();
+						count++;
+						System.out.println("First name: " + fName);
+					}
+					
+					if(s.hasNext()) {
+						lName = s.next();
+						count++;
+						System.out.println("Last name: " + lName);	
+					}
+					
+					if(s.hasNext()) {
+						balance = s.nextDouble();
+						count++;
+						System.out.println("Balance: " + balance);
+					}
+					
+					if(s.hasNext()) {
+						date = s.next();
+						count++;
+						System.out.println("Date: " + date);
+					}
+					
+					if(s.hasNext()) {
+						special = s.nextBoolean();
+						count++;
+						System.out.println("Special: " + special);
+					}
 						 
 					Profile profile = new Profile(fName, lName);
 					Date dateOpen = new Date(date);
-						 
-					if(com.equals("OC")) {
+					boolean opened = false;
+					
+					//magic numbers
+					if(com.equals("OC") && count == open_tokens) {
 						Checking checking = new Checking(profile, balance, dateOpen, special);
-						db.add(checking);
+						opened = db.add(checking);
 					} 
 						 
-					if(com.equals("OS")) {
+					else if(com.equals("OS") && count == open_tokens) {
 							 
 						Savings savings = new Savings(profile, balance, dateOpen, special);
-						db.add(savings);
+						opened = db.add(savings);
 							 
 					}
 						 
-					if(com.equals("OM")) {
+					else if(com.equals("OM") && count == open_mm_tokens) {
 							 
 						MoneyMarket moneymarket = new MoneyMarket(profile, balance, dateOpen);
-						db.add(moneymarket);
+						opened = db.add(moneymarket);
 							 
 					}
-					 
-					System.out.println("Account opened and added to the database");
+					
+					if(opened == true) {
+						System.out.println("Account opened and added to the database");
+					}
+					
+					else {
+						System.out.println("Account is already in the database.");
+					}
 					 
 				}
 				 
@@ -200,13 +237,18 @@ public class TransactionManager {
 					break;
 				}
 				
+				else {
+					System.out.println("Command '" + com + "' not supported!");
+					break;
+				}
+				
 			}
-		
-			sc.close();
+			
+			s.close();
 			
 		}
 		
-		
+		sc.close();
 		
 	}
 
