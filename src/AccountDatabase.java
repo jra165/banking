@@ -14,7 +14,7 @@ public class AccountDatabase {
 				return i;
 			}
 		}
-		System.out.println("Error");
+		
 		return -1;
 	}
 	
