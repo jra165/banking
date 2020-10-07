@@ -7,6 +7,11 @@ public class MoneyMarket extends Account {
 	public MoneyMarket(Profile holder, double balance, Date dateOpen) {
 		super(holder, balance, dateOpen);
 	}
+	
+	public MoneyMarket(Profile profile) {
+		super(profile);
+	}
+	
 
 	@Override
 	public double monthlyInterest() {
@@ -43,6 +48,7 @@ public class MoneyMarket extends Account {
 		return Double.parseDouble(strMonthlyFee);
 	}
 	
+	@Override
 	public String toString() {
 		
 		String accountInfo;
