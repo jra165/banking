@@ -10,6 +10,11 @@ public class Checking extends Account {
 	}
 
 	
+	public Checking(Profile profile) {
+		super(profile);
+	}
+
+
 	@Override
 	public double monthlyInterest() {
 		
@@ -45,14 +50,29 @@ public class Checking extends Account {
 		return Double.parseDouble(strMonthlyFee);
 	}
 	
+	@Override
+	public String toString() {
+		
+		String accountInfo;
+		
+		if (directDeposit) {
+			accountInfo = "*Checking*" + super.toString() + "*direct deposit account*";
+		}
+		else {
+			accountInfo = "*Checking*" + super.toString();
+		}
+		
+		return accountInfo;
+	}
+	
 	public static void main(String[] args) {
 		
 		Profile Kyle = new Profile("Kyle", "Lee");
 		Date open = new Date("10/6/20");
-		double amount = 20.05;
-		boolean directDeposit = false;
+		double amount = 1234.567;
+		boolean directDeposit = true;
 		
-		Account capitalOne = new Checking(Kyle, amount, open, directDeposit);
+		Checking capitalOne = new Checking(Kyle, amount, open, directDeposit);
 		System.out.println(capitalOne.toString());
 		
 	}

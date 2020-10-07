@@ -17,4 +17,18 @@ public class Profile {
 		return lname;
 	}
 	
+	@Override
+	public boolean equals(Object obj){
+		if (obj == this) {
+			return true;
+		}
+		
+		if (obj instanceof Profile) {
+			Profile person = (Profile) obj;	
+			return fname.equals(person.get_fname()) && lname.equals(person.get_lname()); 	 
+		}
+		
+		return false;
+	}
+	
 }

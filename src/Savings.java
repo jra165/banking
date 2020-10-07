@@ -9,6 +9,11 @@ public class Savings extends Account {
 		this.isLoyal = isLoyal;
 	}
 	
+	public Savings(Profile profile) {
+		super(profile);
+	}
+	
+	
 	@Override
 	public double monthlyInterest() {
 		
@@ -51,6 +56,33 @@ public class Savings extends Account {
 		String strMonthlyFee = df.format(monthlyFee);
 
 		return Double.parseDouble(strMonthlyFee);
+		
+	}
+	
+	@Override
+	public String toString() {
+		
+		String accountInfo;
+		
+		if (isLoyal) {
+			accountInfo = "*Savings*" + super.toString() + "*special Savings account*";
+		}
+		else {
+			accountInfo = "*Savings*" + super.toString();
+		}
+		
+		return accountInfo;
+	}
+	
+	public static void main(String[] args) {
+		
+		Profile Kyle = new Profile("Kyle", "Lee");
+		Date open = new Date("10/6/20");
+		double amount = 20.05;
+		boolean directDeposit = false;
+		
+		Savings jpMorganChase = new Savings(Kyle, amount, open, directDeposit);
+		System.out.println(jpMorganChase.toString());
 		
 	}
 

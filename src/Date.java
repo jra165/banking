@@ -17,7 +17,7 @@ public class Date implements Comparable<Date> {
 		return year;
 	}
 	
-	public int getMonth() {
+	public int getMonth() {  
 		return month;
 	}
 	

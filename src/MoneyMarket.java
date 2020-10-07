@@ -2,12 +2,16 @@ import java.text.DecimalFormat;
 
 public class MoneyMarket extends Account {
 	
-	private int withdrawals;
+	private int withdrawals = 0;
 	
-	public MoneyMarket(Profile holder, double balance, Date dateOpen, int withdrawals) {
+	public MoneyMarket(Profile holder, double balance, Date dateOpen) {
 		super(holder, balance, dateOpen);
-		this.withdrawals = withdrawals;
 	}
+	
+	public MoneyMarket(Profile profile) {
+		super(profile);
+	}
+	
 
 	@Override
 	public double monthlyInterest() {
@@ -36,12 +40,27 @@ public class MoneyMarket extends Account {
 			monthlyFee = 0;
 		}
 		else {
-			monthlyFee = moneyMarketMonthlyFee;
+			monthlyFee = moneyMarketMonthlyFee; 
 		}
 		
 		String strMonthlyFee = df.format(monthlyFee);
 
 		return Double.parseDouble(strMonthlyFee);
+	}
+	
+	@Override
+	public String toString() {
+		
+		String accountInfo;
+		
+		if (withdrawals == 1) {
+			accountInfo = "*Money Market*" + super.toString() + withdrawals + " withdrawal";
+		}
+		else {
+			accountInfo = "*Money Market*" + super.toString() + withdrawals + " withdrawals";
+		}
+		
+		return accountInfo;
 	}
 
 }
