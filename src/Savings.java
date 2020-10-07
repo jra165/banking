@@ -74,6 +74,16 @@ public class Savings extends Account {
 		return accountInfo;
 	}
 	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj) && obj instanceof Savings) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		Profile Kyle = new Profile("Kyle", "Lee");
