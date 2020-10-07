@@ -65,6 +65,15 @@ public class Checking extends Account {
 		return accountInfo;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj) && obj instanceof Checking) {
+			return true;
+		}
+		return false;
+	}
+	
+	
 	public static void main(String[] args) {
 		
 		Profile Kyle = new Profile("Kyle", "Lee");

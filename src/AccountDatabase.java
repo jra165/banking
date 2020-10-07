@@ -10,7 +10,7 @@ public class AccountDatabase {
 	
 	private int find(Account account) { 
 		for (int i = 0; i < size; i++) {
-			if(account.getHolder().equals(accounts[i].getHolder())) {
+			if(account.equals(accounts[i])) {
 				return i;
 			}
 		}
