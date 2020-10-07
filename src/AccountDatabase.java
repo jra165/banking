@@ -9,8 +9,8 @@ public class AccountDatabase {
 	
 	
 	private int find(Account account) { 
-		for (int i = 0; i < accounts.length; i++) {
-			if(account.equals(accounts[i])) {
+		for (int i = 0; i < size; i++) {
+			if(account.getHolder().equals(accounts[i].getHolder())) {
 				return i;
 			}
 		}
@@ -102,7 +102,7 @@ public class AccountDatabase {
 	
 	// Selection Sort
 	private void sortByDateOpen()  { // sort in ascending order
-		int numAccounts = accounts.length;
+		int numAccounts = size;
 		Date firstDateOpen;
 		Date secondDateOpen;
 		
@@ -132,7 +132,7 @@ public class AccountDatabase {
 	
 	private void sortByLastName() { 
 		
-		int numAccounts = accounts.length;
+		int numAccounts = size;
 		String firstHolder_lname;
 		String secondHolder_lname;
 		
@@ -169,7 +169,8 @@ public class AccountDatabase {
 		System.out.println();
 		System.out.println("--Printing statements by last name--");
 		
-		for (int i = 0; i < accounts.length; i++) {
+		for (int i = 0; i < size; i++) {
+			System.out.println();
 			System.out.println(accounts[i].toString());
 			System.out.println("-interest: $ " + accounts[i].monthlyInterest());
 			System.out.println("-fee: $ " + accounts[i].monthlyFee());
@@ -188,7 +189,8 @@ public class AccountDatabase {
 		System.out.println();
 		System.out.println("--Printing statements by last name--");
 		
-		for (int i = 0; i < accounts.length; i++) {
+		for (int i = 0; i < size; i++) {
+			System.out.println();
 			System.out.println(accounts[i].toString());
 			System.out.println("-interest: $ " + accounts[i].monthlyInterest());
 			System.out.println("-fee: $ " + accounts[i].monthlyFee());
@@ -205,7 +207,8 @@ public class AccountDatabase {
 		System.out.println();
 		System.out.println("--Listing accounts in the database--");
 		
-		for (int i = 0; i < accounts.length; i++) {
+		for (int i = 0; i < size; i++) {
+			System.out.println();
 			System.out.println(accounts[i].toString());
 		}
 		
