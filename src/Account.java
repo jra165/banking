@@ -51,19 +51,22 @@ public abstract class Account {
 		
 	}
 	
-	@Override
-	public boolean equals(Object obj){
-		if (obj == this) {
+	
+	@Override 
+	public boolean equals(Object obj){ 
+		if (obj == this) { 
 			return true;
 		}
-		
-		if (obj instanceof Account) {
-			Profile person = (Profile) obj;	
-			return holder.equals(person); 	 
+	  
+		if (obj instanceof Account) { 
+			Account currAcc = (Account) obj;
+			return this.holder.equals(currAcc.getHolder()); 
 		}
-		
-		return false;
+	  
+		return false; 
+	
 	}
+	 
 	
 	public abstract double monthlyInterest();
 	public abstract double monthlyFee();

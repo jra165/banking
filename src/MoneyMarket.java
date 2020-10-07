@@ -12,6 +12,12 @@ public class MoneyMarket extends Account {
 		super(profile);
 	}
 	
+	
+	// For case in which withdrawal is successful we increment withdrawal total
+	public void setWithdrawals() {
+		this.withdrawals++;
+	}
+	
 
 	@Override
 	public double monthlyInterest() {
@@ -54,13 +60,21 @@ public class MoneyMarket extends Account {
 		String accountInfo;
 		
 		if (withdrawals == 1) {
-			accountInfo = "*Money Market*" + super.toString() + withdrawals + " withdrawal";
+			accountInfo = "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawal*";
 		}
 		else {
-			accountInfo = "*Money Market*" + super.toString() + withdrawals + " withdrawals";
+			accountInfo = "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawals*";
 		}
 		
 		return accountInfo;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (super.equals(obj) && obj instanceof MoneyMarket) {
+			return true;
+		}
+		return false;
 	}
 
 }
