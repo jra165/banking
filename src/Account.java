@@ -4,12 +4,18 @@ public abstract class Account {
 	private Profile holder;
 	private double balance;
 	private Date dateOpen;
+
 	
 	public Account(Profile holder, double balance, Date dateOpen) {
 		this.holder = holder;
 		this.balance = balance;
 		this.dateOpen = dateOpen;
 	}
+	
+	public Account(Profile holder) {
+		this.holder = holder;
+	}
+
 	
 	public Profile getHolder() {
 		return holder;
@@ -32,16 +38,31 @@ public abstract class Account {
 		balance += amount;
 	}
 	
+	@Override
 	public String toString() { 
 		
 		String fname = this.holder.get_fname();
 		String lname = this.holder.get_lname();
 		String date = this.dateOpen.toString();
 		
-		String accountInfo = fname + " " + lname + "* $" + balance + "*" + date;
+		String accountInfo = fname + " " + lname + "* $" + String.format("%.2f", balance) + "*" + date;
 		
 		return accountInfo;
 		
+	}
+	
+	@Override
+	public boolean equals(Object obj){
+		if (obj == this) {
+			return true;
+		}
+		
+		if (obj instanceof Account) {
+			Profile person = (Profile) obj;	
+			return holder.equals(person); 	 
+		}
+		
+		return false;
 	}
 	
 	public abstract double monthlyInterest();

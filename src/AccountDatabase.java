@@ -3,6 +3,11 @@ public class AccountDatabase {
 	private Account[] accounts = new Account[5];
 	private int size;
 	
+	public int getSize() {
+		return size;
+	}
+	
+	
 	private int find(Account account) { 
 		for (int i = 0; i < accounts.length; i++) {
 			if(account.equals(accounts[i])) {
@@ -61,12 +66,15 @@ public class AccountDatabase {
 		
 	}
 	
-	public boolean deposit(Account account, double amount) { 
-		if (account == null || amount < 0) {
+	public boolean deposit(Account account, double amount) {
+		
+		int index = find(account);
+		
+		if (account == null || index == -1 || amount < 0) {
 			return false;
 		}
 		
-		account.credit(amount);
+		accounts[index].credit(amount);
 		
 		return true;
 		
@@ -74,16 +82,19 @@ public class AccountDatabase {
 	
 	// return 0: withdrawal successful, 1: insufficient funds, -1 account doesn't exist
 	public int withdrawal(Account account, double amount) {
-		if (account == null || amount < 0) {
+		
+		int index = find(account);
+		
+		if (account == null || index == -1 || amount < 0) {
 			return -1;
 		}
 		
-		else if (amount > account.getBalance()) {
+		else if (amount > accounts[index].getBalance()) {
 			return 1;
 		}
 		
 		else { 
-			account.debit(amount);
+			accounts[index].debit(amount);
 		}
 		
 		return 0; 
@@ -154,9 +165,19 @@ public class AccountDatabase {
 		
 		sortByDateOpen();
 		
+		
+		System.out.println();
+		System.out.println("--Printing statements by last name--");
+		
 		for (int i = 0; i < accounts.length; i++) {
 			System.out.println(accounts[i].toString());
+			System.out.println("-interest: $ " + accounts[i].monthlyInterest());
+			System.out.println("-fee: $ " + accounts[i].monthlyFee());
+			System.out.println("-new balance: $ " + accounts[i].getBalance());
 		}
+	
+		System.out.println("--end of listing--");
+		System.out.println();
 		
 	}
 	
@@ -164,17 +185,32 @@ public class AccountDatabase {
 		
 		sortByLastName();
 		
+		System.out.println();
+		System.out.println("--Printing statements by last name--");
+		
 		for (int i = 0; i < accounts.length; i++) {
 			System.out.println(accounts[i].toString());
+			System.out.println("-interest: $ " + accounts[i].monthlyInterest());
+			System.out.println("-fee: $ " + accounts[i].monthlyFee());
+			System.out.println("-new balance: $ " + accounts[i].getBalance());
 		}
+		
+		System.out.println("--end of printing--");
+		System.out.println();
 		
 	}
 	
 	public void printAccounts() { 
 		
+		System.out.println();
+		System.out.println("--Listing accounts in the database--");
+		
 		for (int i = 0; i < accounts.length; i++) {
 			System.out.println(accounts[i].toString());
 		}
+		
+		System.out.println("--end of listing--");
+		System.out.println();
 		
 	}
 	

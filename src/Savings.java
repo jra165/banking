@@ -9,6 +9,11 @@ public class Savings extends Account {
 		this.isLoyal = isLoyal;
 	}
 	
+	public Savings(Profile profile) {
+		super(profile);
+	}
+	
+	
 	@Override
 	public double monthlyInterest() {
 		
@@ -54,6 +59,7 @@ public class Savings extends Account {
 		
 	}
 	
+	@Override
 	public String toString() {
 		
 		String accountInfo;
