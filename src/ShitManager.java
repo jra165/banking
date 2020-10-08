@@ -33,6 +33,7 @@ public class ShitManager {
 		System.out.println("Transaction processing starts.....");
 		AccountDatabase db = new AccountDatabase();
 		
+		outer:
 		while (sc.hasNext()) {
 			String command = sc.nextLine().trim();
 			
@@ -64,7 +65,6 @@ public class ShitManager {
 			boolean is_six_tokens = checkTokens(command, open_tokens);
 			String com = "";
 
-			outer:
 			while(s.hasNext()) {
 
 				try {
@@ -245,7 +245,7 @@ public class ShitManager {
 
 							fName = s.next();
 							lName = s.next();
-							balance = s.nextInt();
+							balance = s.nextDouble();
 							date = s.next();
 
 							Profile profile = new Profile(fName, lName);
@@ -286,7 +286,7 @@ public class ShitManager {
 							
 							fName = s.next();
 							lName = s.next();
-							balance = s.nextInt();
+							balance = s.nextDouble();
 							date = s.next();
 							special = s.nextBoolean();
 								 
@@ -344,15 +344,15 @@ public class ShitManager {
 					}
 					
 				} catch(InputMismatchException e) {
-					System.out.println("InputMismatchException.");
+					System.out.println("Input data type mismatch.");
 				}
 				catch(NumberFormatException e) {
-					System.out.println("NumberFormatException");
+					System.out.println("Number format exception.");
 				}
 			}
 			
 			s.close();
-			break;
+			//break;
 		}
 		
 		sc.close();

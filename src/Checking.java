@@ -18,22 +18,22 @@ public class Checking extends Account {
 	@Override
 	public double monthlyInterest() {
 		
-		DecimalFormat df = new DecimalFormat("0.00");
+		//DecimalFormat df = new DecimalFormat("0.00");
 		final double annualInterestRate = 0.0005;
 		int period = 12;
 		
 		final double monthlyInterestRate = annualInterestRate/period;
 		double monthlyInterest = getBalance() * monthlyInterestRate;
 		
-		String strMonthlyInterest = df.format(monthlyInterest);
+		//String strMonthlyInterest = df.format(monthlyInterest);
 		
-		return Double.parseDouble(strMonthlyInterest);
+		return monthlyInterest;
 	}
 
 	@Override
 	public double monthlyFee() {
 		
-		DecimalFormat df = new DecimalFormat("0.00");
+		//DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 1500;
 		final double checkingMonthlyFee = 25;
@@ -45,9 +45,9 @@ public class Checking extends Account {
 			monthlyFee = checkingMonthlyFee;
 		}
 
-		String strMonthlyFee = df.format(monthlyFee);
+		//String strMonthlyFee = df.format(monthlyFee);
 		
-		return Double.parseDouble(strMonthlyFee);
+		return monthlyFee;
 	}
 	
 	@Override
