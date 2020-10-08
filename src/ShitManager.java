@@ -94,7 +94,7 @@ public class ShitManager {
 						}
 						
 						else {
-							System.out.println("Command '" + command + "' not supported!");
+							System.out.println("Command '" + com + "' not supported!");
 							break;
 						}
 						
@@ -142,7 +142,7 @@ public class ShitManager {
 						}
 						
 						else {
-							System.out.println("Command '" + command + "' not supported!");
+							System.out.println("Command '" + com + "' not supported!");
 							break;
 						}
 						
@@ -175,7 +175,7 @@ public class ShitManager {
 							}
 							 
 							else {
-								System.out.println("Command '" + command + "' not supported!");
+								System.out.println("Command '" + com + "' not supported!");
 								break;
 							}
 							
@@ -225,7 +225,7 @@ public class ShitManager {
 						}
 						
 						else {
-							System.out.println("Command '" + command + "' not supported!");
+							System.out.println("Command '" + com + "' not supported!");
 							break;
 						}
 						
@@ -259,7 +259,7 @@ public class ShitManager {
 						}
 						
 						else {
-							System.out.println("Command '" + command + "' not supported!");
+							System.out.println("Command '" + com + "' not supported!");
 							break;
 						}
 						
@@ -306,14 +306,14 @@ public class ShitManager {
 						}
 						
 						else {
-							System.out.println("Command '" + command + "' not supported!");
+							System.out.println("Command '" + com + "' not supported!");
 							break;
 						}
 
 					}
 					
 					else {
-						System.out.println("Command '" + command + "' not supported!");
+						System.out.println("Command '" + com + "' not supported!");
 						break;
 					}
 					
