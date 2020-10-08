@@ -48,31 +48,26 @@ public class TransactionManager {
 					if(s.hasNext()) {
 						fName = s.next();
 						count++;
-						System.out.println("First name: " + fName);
 					}
 					
 					if(s.hasNext()) {
 						lName = s.next();
 						count++;
-						System.out.println("Last name: " + lName);	
 					}
 					
 					if(s.hasNext()) {
 						balance = s.nextDouble();
 						count++;
-						System.out.println("Balance: " + balance);
 					}
 					
 					if(s.hasNext()) {
 						date = s.next();
 						count++;
-						System.out.println("Date: " + date);
 					}
 					
 					if(s.hasNext()) {
 						special = s.nextBoolean();
 						count++;
-						System.out.println("Special: " + special);
 					}
 						 
 					Profile profile = new Profile(fName, lName);
@@ -173,9 +168,11 @@ public class TransactionManager {
 					 
 					if (deposited) {
 						System.out.println(balance + " deposited to account.");
+						break;
 					}
 					else {
 						System.out.println("Account does not exist.");
+						break;
 					}
 					 
 				}
