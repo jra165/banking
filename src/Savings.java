@@ -1,19 +1,42 @@
 import java.text.DecimalFormat;
 
+/**
+ * Savings represents a subclass of Account with the properties and methods associated with the Savings object
+ * Properties and methods inherited from Account class
+ * Additional methods include monthlyInterest, monthlyFee, toString, and equals
+ * @author Joshua Atienza, Kyle Lee
+ *
+ */
 public class Savings extends Account {
 	
 	private boolean isLoyal;
 	
+	/**
+	 * Creates a Savings account with the specified holder, balance, date opened, and loyalty status
+	 * Constructor intended to only be used with open account methods
+	 * @param holder The holder of the account
+	 * @param balance The balance of the account
+	 * @param dateOpen The date the account was opened
+	 * @param isLoyal Whether or not the account is in loyalty program
+	 */
 	public Savings(Profile holder, double balance, Date dateOpen, boolean isLoyal) {
 		super(holder, balance, dateOpen);
 		this.isLoyal = isLoyal;
 	}
 	
+	/**
+	 * Creates a Savings account with the specified holder
+	 * Constructor intended to only be used with withdraw, deposit, and close methods
+	 * @param profile The profile of the holder
+	 */
 	public Savings(Profile profile) {
 		super(profile);
 	}
 	
-	
+	/** 
+	 * Calculates the monthly interest of savings account
+	 * @return monthlyInterest The monthly interest associated with a specific savings account
+	 */
 	@Override
 	public double monthlyInterest() {
 		
@@ -39,7 +62,11 @@ public class Savings extends Account {
 		return monthlyInterest;
 	
 	}
-
+	
+	/**
+	 * Calculates the monthly fee of savings account
+	 * @return monthlyFee The monthly fee associated with a specific savings account
+	 */
 	@Override
 	public double monthlyFee() {
 		
@@ -61,6 +88,10 @@ public class Savings extends Account {
 		
 	}
 	
+	/**
+	 * Converts Savings account to its String representation
+	 * @return accountInfo The String representation of Savings object
+	 */
 	@Override
 	public String toString() {
 		
@@ -76,7 +107,12 @@ public class Savings extends Account {
 		return accountInfo;
 	}
 	
-	
+	/**
+	 * Checks if Savings is equivalent to obj being compared to.
+	 * Checks if obj instanceof Savings and if all data fields are equivalent
+	 * @param obj The object being compared to a particular Savings account
+	 * @return true if Savings is equivalent to object, false otherwise
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj) && obj instanceof Savings) {
