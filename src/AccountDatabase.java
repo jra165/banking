@@ -20,8 +20,14 @@ public class AccountDatabase {
 	
 	
 	private void grow() { 
-		Account[] newAccounts = new Account[accounts.length+5];
-		accounts = newAccounts;
+
+		Account[] temp = accounts;
+		accounts = new Account[accounts.length+5];
+		
+		for (int i = 0; i < temp.length; i++) {
+			accounts[i] = temp[i];
+		}
+		
 	}
 	
 	
@@ -169,14 +175,17 @@ public class AccountDatabase {
 		if(size > 0) {
 			sortByDateOpen();
 			System.out.println();
-			System.out.println("--Printing statements by last name--");
+			System.out.println("--Printing statements by date opened--");
 			
+			
+			//String.format("%.2f", balance)
 			for (int i = 0; i < size; i++) {
 				System.out.println();
 				System.out.println(accounts[i].toString());
-				System.out.println("-interest: $ " + accounts[i].monthlyInterest());
-				System.out.println("-fee: $ " + accounts[i].monthlyFee());
-				System.out.println("-new balance: $ " + accounts[i].getBalance());
+				accounts[i].setBalance(accounts[i].monthlyInterest(), accounts[i].monthlyFee());
+				System.out.println("-interest: $ " + String.format("%.2f", accounts[i].monthlyInterest()));
+				System.out.println("-fee: $ " + String.format("%.2f", accounts[i].monthlyFee()));
+				System.out.println("-new balance: $ " + (String.format("%.2f", accounts[i].getBalance())));
 			}
 		
 			System.out.println("--end of listing--");
@@ -201,9 +210,10 @@ public class AccountDatabase {
 			for (int i = 0; i < size; i++) {
 				System.out.println();
 				System.out.println(accounts[i].toString());
-				System.out.println("-interest: $ " + accounts[i].monthlyInterest());
-				System.out.println("-fee: $ " + accounts[i].monthlyFee());
-				System.out.println("-new balance: $ " + accounts[i].getBalance());
+				accounts[i].setBalance(accounts[i].monthlyInterest(), accounts[i].monthlyFee());
+				System.out.println("-interest: $ " + String.format("%.2f", accounts[i].monthlyInterest()));
+				System.out.println("-fee: $ " + String.format("%.2f", accounts[i].monthlyFee()));
+				System.out.println("-new balance: $ " + (String.format("%.2f", accounts[i].getBalance())));
 			}
 			
 			System.out.println("--end of printing--");
@@ -223,7 +233,7 @@ public class AccountDatabase {
 			
 			System.out.println();
 			System.out.println("--Listing accounts in the database--");
-			
+
 			for (int i = 0; i < size; i++) {
 				System.out.println();
 				System.out.println(accounts[i].toString());

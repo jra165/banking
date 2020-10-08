@@ -17,31 +17,33 @@ public class Savings extends Account {
 	@Override
 	public double monthlyInterest() {
 		
-		DecimalFormat df = new DecimalFormat("0.00");
-		final double annualInterestRate = 0.0005;
+		//DecimalFormat df = new DecimalFormat("0.00");
+		final double annualInterestRate = 0.0025;
 		int period = 12;
 		
 		final double monthlyInterestRate = annualInterestRate/period;
 		final double loyalInterestRate = 0.0035;
+		final double monthlyLoyalInterestRate = loyalInterestRate/period;
 		double monthlyInterest;
 		
 		if (isLoyal) {
-			monthlyInterest = getBalance() * loyalInterestRate; 
+			monthlyInterest = getBalance() * monthlyLoyalInterestRate; 
 		}
 		else {
 			monthlyInterest = getBalance() * monthlyInterestRate;
 		}
 		
-		String strMonthlyInterest = df.format(monthlyInterest);
+		//String strMonthlyInterest = df.format(monthlyInterest);
 		
-		return Double.parseDouble(strMonthlyInterest);
+		
+		return monthlyInterest;
 	
 	}
 
 	@Override
 	public double monthlyFee() {
 		
-		DecimalFormat df = new DecimalFormat("0.00");
+		//DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 300;
 		final double savingsMonthlyFee = 5;
@@ -53,9 +55,9 @@ public class Savings extends Account {
 			monthlyFee = savingsMonthlyFee;
 		}
 		
-		String strMonthlyFee = df.format(monthlyFee);
+		//String strMonthlyFee = df.format(monthlyFee);
 
-		return Double.parseDouble(strMonthlyFee);
+		return monthlyFee;
 		
 	}
 	

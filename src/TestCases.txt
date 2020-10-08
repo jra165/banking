@@ -49,7 +49,6 @@ CC John Doe
 CM John Doe
 PA
 OC Richard Scanlan 1500 7/31/2014 true
-5 | Page
 OC Jason Brown 300.123 6/28/2015 false
 OS Mary Johnson 2000.87654 7/31/2014 true
 OS Charlie Brown 800 6/28/2015 false
@@ -58,8 +57,7 @@ OM Charlie Brown 600.33 6/2/2015
 OM Forever Young 3634.45 2/21/2020
 OC Jerry Anderson 1001.4 9/23/2020 false
 OS Tom Moore xxx 9/23/2020 false
-OS Tom Moore 1001.4 9/23/2020 FALS
-E
+OS Tom Moore 1001.4 9/23/2020 FALSE
 OC Tom Moore 1001.4 9/23/2020 flash
 PA
 WC Jerry Anderson xxx
@@ -75,4 +73,5 @@ WM Forever Young 10000
 PA
 PN
 WS Charlie Brown 600
-PDQ
+PD
+Q
