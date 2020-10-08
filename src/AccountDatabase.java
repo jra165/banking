@@ -1,13 +1,28 @@
-
+/**
+The AccountDatabase class is the container class that represents an account database as an array of items.
+Property of AccountDatabase is size.
+Methods associated with AccountDatabase are getSize, find, grow, add, remove, deposit, withdrawal
+sortByDateOpen, sortByLastName, printByDateOpen, printByLastName, and printAccounts 
+@author Joshua Atienza, Kyle Lee
+*/
 public class AccountDatabase {
 	private Account[] accounts = new Account[5];
 	private int size;
 	
+	/**
+	 * Gets the size of the database
+	 * @return size The number of accounts currently in the database
+	 */
 	public int getSize() {
 		return size;
 	}
 	
-	
+	/**
+	 * Finds a specific account in the database and returns its index in the array.
+	 * Performs a linear search for the target account
+	 * @param account The Account being searched for
+	 * @return The index of the found account, -1 if item doesn't exist in database
+	 */
 	private int find(Account account) { 
 		for (int i = 0; i < size; i++) {
 			if(account.equals(accounts[i])) {
@@ -18,7 +33,10 @@ public class AccountDatabase {
 		return -1;
 	}
 	
-	
+	/**
+	 * Grows the capacity of the database by copying over object references from old array to new array
+	 * Capacity of the database increases by 5 when grow() is called
+	 */
 	private void grow() { 
 
 		Account[] temp = accounts;
@@ -30,7 +48,12 @@ public class AccountDatabase {
 		
 	}
 	
-	
+	/**
+	 * Adds specified Account to database
+	 * Account is added in the next immediately available index
+	 * @param account The Account being added to the database
+	 * @return true if add successful, false otherwise
+	 */
 	public boolean add(Account account) {
 		
 		if (find(account) != -1 || !account.getDateOpen().isValid()) {
@@ -54,7 +77,12 @@ public class AccountDatabase {
 	
 	}
 	
-	
+	/** 
+	 * Removes the specified Account from database
+	 * Replaces the removing element with the last element, and size field decreases by 1
+	 * @param account The Account being removed from the database
+	 * @return true if Account successfully removed, false otherwise
+	 */
 	public boolean remove(Account account) {
 		
 		int index = find(account);
@@ -72,6 +100,12 @@ public class AccountDatabase {
 		
 	}
 	
+	/**
+	 * Deposits a specified amount into a designated account
+	 * @param account The account being deposited into
+	 * @param amount THe amount being deposited
+	 * @return true if account exists and amount > 0, false otherwise
+	 */
 	public boolean deposit(Account account, double amount) {
 		
 		int index = find(account);
@@ -86,7 +120,12 @@ public class AccountDatabase {
 		
 	} 
 	
-	// return 0: withdrawal successful, 1: insufficient funds, -1 account doesn't exist
+	/**
+	 * Withdraws a specified amount from a designated account
+	 * @param account The account being withdrawn from
+	 * @param amount The amount being withdrawn
+	 * @return 0 if withdrawal successful, 1 if funds insufficient, -1 if account doesn't exist
+	 */
 	public int withdrawal(Account account, double amount) {
 		
 		int index = find(account);
@@ -109,7 +148,10 @@ public class AccountDatabase {
 		return 0; 
 	}
 	
-	// Selection Sort
+	/**
+	 * Perform selection sort on accounts in database
+	 * Sort by the dates the accounts were opened
+	 */
 	private void sortByDateOpen()  { // sort in ascending order
 		int numAccounts = size;
 		Date firstDateOpen;
@@ -139,6 +181,10 @@ public class AccountDatabase {
 		
 	}
 	
+	/**
+	 * Perform selection sort on account in database
+	 * Sort by the last names of the account holders
+	 */
 	private void sortByLastName() { 
 		
 		int numAccounts = size;
@@ -170,6 +216,10 @@ public class AccountDatabase {
 		}
 	}
 	
+	/**
+	 * Prints the list of accounts by the dates they were opened
+	 * Includes starting balance and ending balance, with fees and interest
+	 */
 	public void printByDateOpen() { 
 		
 		if(size > 0) {
@@ -198,6 +248,10 @@ public class AccountDatabase {
 		
 	}
 	
+	/** 
+	 * Prints the list of accounts by the last names of the holders
+	 * Includes starting balance and ending balance, with fees and interest
+	 */
 	public void printByLastName() { 
 		
 		if(size > 0) {
@@ -227,6 +281,9 @@ public class AccountDatabase {
 
 	}
 	
+	/**
+	 * Prints the list of accounts in the database
+	 */
 	public void printAccounts() { 
 		
 		if(size > 0) {

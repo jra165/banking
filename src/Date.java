@@ -1,10 +1,19 @@
-
+/**
+The Date class represents the properties and methods associated with the Date object.
+Properties include year, month, day
+Methods include getYear, getMonth, getDay, compareTo, toString, isValid, isLeap
+@author Joshua Atienza, Kyle Lee
+*/
 public class Date implements Comparable<Date> {
 
 	private int year;
 	private int month;
 	private int day;
 	
+	/**
+	 * Creates a Date with the specified month, day, year
+	 * @param date The String version of the date
+	 */
 	public Date(String date) {
 		String[] dateParsed = date.split("/");
 		this.month = Integer.parseInt(dateParsed[0]);
@@ -12,19 +21,36 @@ public class Date implements Comparable<Date> {
 		this.year = Integer.parseInt(dateParsed[2]);
 	}
 	
-	
+	/**
+	 * Gets the year of the date
+	 * @return year The year associated with the date
+	 */
 	public int getYear() {
 		return year;
 	}
 	
+	/**
+	 * Gets the month of the date
+	 * @return month The month associated with the date
+	 */
 	public int getMonth() {  
 		return month;
 	}
 	
+	/**
+	 * Gets the day of the date
+	 * @return day The day associated with the date
+	 */
 	public int getDay() {
 		return day;
 	}
 	
+	/**
+	 * Compares a Date with another Date
+	 * Compares the year, month, and date to determine which comes first
+	 * @param o The Date being compared to
+	 * @return -1 if date older than date in parameter, 0 if dates equal, 1 if date younger than date in parameter
+	 */
 	@Override
 	public int compareTo(Date o) {
 		if (year < o.getYear()) {
@@ -56,12 +82,21 @@ public class Date implements Comparable<Date> {
 		
 	}
 	
-	public String toString() { //in the format mm/dd/yyyy
+	/**
+	 * Converts the Date to a String representation
+	 * Date follows the format mm/dd/yyyy
+	 * @return dateStr The String representation of the Date
+	 */
+	public String toString() {
 		String dateStr = Integer.toString(month) + "/" + Integer.toString(day) + "/" + Integer.toString(year);
 		return dateStr;
 	}
 	
-	
+	/** 
+	 * Checks if a given date is valid
+	 * Checks for number of days in a month, leap years, etc.
+	 * @return true if date valid, false otherwise
+	 */
 	public boolean isValid() { 
 		
 		if ((year < 0) || (month < 1) || (month > 12) || (day < 1) || (day > 31)) {
@@ -86,6 +121,11 @@ public class Date implements Comparable<Date> {
 		
 	}
 	
+	/**
+	 * Checks if a year is a leap year
+	 * @param year The year being evaluated for leap qualifications
+	 * @return true if leap year, false otherwise
+	 */
 	private boolean isLeap(int year) {
 		if (year % 4 != 0) {
 			return false;
