@@ -181,7 +181,7 @@ public class TransactionManager {
 							}
 							
 							if (deposited) {
-								System.out.println(balance + " deposited to account.");
+								System.out.println(String.format("%.2f", balance) + " deposited to account.");
 							}
 							else {
 								System.out.println("Account does not exist.");
@@ -214,7 +214,7 @@ public class TransactionManager {
 							}
 							 
 							if (withdrawn == 0) {
-								System.out.println(balance + " withdrawn from account.");
+								System.out.println(String.format("%.2f", balance) + " withdrawn from account.");
 							}
 							else if (withdrawn == 1) {
 								System.out.println("Insufficient funds.");

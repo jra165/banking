@@ -74,12 +74,15 @@ public class ShitManager {
 		case "CC":
 			Account currCheckAcc = new Checking(profile);
 			closed = db.remove(currCheckAcc);		// remove that account from the array
+			break;
 		case "CS":
 			Account currSavingsAcc = new Savings(profile);
 			closed = db.remove(currSavingsAcc);		// remove that account from the array
+			break;
 		case "CM":
 			Account currMoneyMarketAcc = new MoneyMarket(profile);
 			closed = db.remove(currMoneyMarketAcc);	// remove that account from the array
+			break;
 		}
 		
 		 
@@ -109,16 +112,19 @@ public class ShitManager {
 			case "DC":
 				Account currCheckingAcc = new Checking(profile);
 				deposited = db.deposit(currCheckingAcc, balance);
+				break;
 			case "DS":
 				Account currSavingsAcc = new Savings(profile);
 				deposited = db.deposit(currSavingsAcc, balance);
+				break;
 			case "DM":
 				Account currMoneyMarketAcc = new MoneyMarket(profile);
 				deposited = db.deposit(currMoneyMarketAcc, balance);
+				break;
 			}
 			
 			if (deposited) {
-				System.out.println(balance + " deposited to account.");
+				System.out.println(String.format("%.2f", balance) + " deposited to account.");
 			}
 			else {
 				System.out.println("Account does not exist.");
@@ -134,17 +140,20 @@ public class ShitManager {
 			case "WC":
 				Account currCheckingAcc = new Checking(profile);
 				withdrawn = db.withdrawal(currCheckingAcc, balance);
+				break;
 			case "WS":
 				Account currSavingsAcc = new Savings(profile);
 				withdrawn = db.withdrawal(currSavingsAcc, balance);
+				break;
 			case "WM":
 				Account currMoneyMarketAcc = new MoneyMarket(profile);
 				withdrawn = db.withdrawal(currMoneyMarketAcc, balance);
+				break;
 			}
 			
 			 
 			if (withdrawn == 0) {
-				System.out.println(balance + " withdrawn from account.");
+				System.out.println(String.format("%.2f", balance) + " withdrawn from account.");
 			}
 			else if (withdrawn == 1) {
 				System.out.println("Insufficient funds.");
@@ -212,6 +221,7 @@ public class ShitManager {
 				else {
 					System.out.println("Account is already in the database.");
 				}
+				break;
 			case "OS":
 				Savings savings = new Savings(profile, balance, dateOpen, special);
 				opened = db.add(savings);
@@ -222,6 +232,7 @@ public class ShitManager {
 				else {
 					System.out.println("Account is already in the database.");
 				}
+				break;
 			}
 		}
 		else {
