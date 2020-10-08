@@ -66,6 +66,8 @@ public class ShitManager {
 			while(s.hasNext()) {
 
 				com = s.next();
+				
+				//command only has one token if it is quit or print
 				if(is_one_token) {
 
 					if(com.equals("PA")) {
@@ -95,6 +97,7 @@ public class ShitManager {
 					
 				}
 				
+				//command with three tokens is close
 				else if(is_three_tokens) {
 					
 					if(com.equals("CC") || com.equals("CS") || com.equals("CM")) {
@@ -142,6 +145,7 @@ public class ShitManager {
 					
 				}
 				
+				//command with four tokens is deposit and withdrawal
 				else if(is_four_tokens) {
 					
 					if(com.equals("DC") || com.equals("DS") || com.equals("DM")) {
@@ -224,6 +228,7 @@ public class ShitManager {
 					
 				}
 				
+				//command with five tokens is open money market account
 				else if(is_five_tokens) {
 					
 					if(com.equals("OM")) {
@@ -256,7 +261,8 @@ public class ShitManager {
 					}
 					
 				}
-
+				
+				//command with six tokens is open checking/savings account
 				else if(is_six_tokens) {
 
 					if(com.equals("OC") || com.equals("OS")) {
