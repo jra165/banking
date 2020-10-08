@@ -1,21 +1,13 @@
 /**
 The AccountDatabase class is the container class that represents an account database as an array of items.
 Property of AccountDatabase is size.
-Methods associated with AccountDatabase are getSize, find, grow, add, remove, deposit, withdrawal
+Methods associated with AccountDatabase are find, grow, add, remove, deposit, withdrawal
 sortByDateOpen, sortByLastName, printByDateOpen, printByLastName, and printAccounts 
 @author Joshua Atienza, Kyle Lee
 */
 public class AccountDatabase {
 	private Account[] accounts = new Account[5];
 	private int size;
-	
-	/**
-	 * Gets the size of the database
-	 * @return size The number of accounts currently in the database
-	 */
-	public int getSize() {
-		return size;
-	}
 	
 	/**
 	 * Finds a specific account in the database and returns its index in the array.
@@ -33,6 +25,7 @@ public class AccountDatabase {
 		return -1;
 	}
 	
+	
 	/**
 	 * Grows the capacity of the database by copying over object references from old array to new array
 	 * Capacity of the database increases by 5 when grow() is called
@@ -47,6 +40,7 @@ public class AccountDatabase {
 		}
 		
 	}
+	
 	
 	/**
 	 * Adds specified Account to database
@@ -77,6 +71,7 @@ public class AccountDatabase {
 	
 	}
 	
+	
 	/** 
 	 * Removes the specified Account from database
 	 * Replaces the removing element with the last element, and size field decreases by 1
@@ -91,7 +86,7 @@ public class AccountDatabase {
 			return false;
 		}
 		
-		accounts[index] = accounts[size-1];			//replaces removing element with last element
+		accounts[index] = accounts[size-1];						//replaces removing element with last element
 		accounts[size-1] = null;
 		
 		size--;
@@ -100,11 +95,12 @@ public class AccountDatabase {
 		
 	}
 	
+	
 	/**
 	 * Deposits a specified amount into a designated account
-	 * @param account The account being deposited into
-	 * @param amount THe amount being deposited
-	 * @return true if account exists and amount > 0, false otherwise
+	 * @param account The Account being deposited into
+	 * @param amount The amount being deposited
+	 * @return true if account exists and amount greater than 0, false otherwise
 	 */
 	public boolean deposit(Account account, double amount) {
 		
@@ -120,9 +116,10 @@ public class AccountDatabase {
 		
 	} 
 	
+	
 	/**
 	 * Withdraws a specified amount from a designated account
-	 * @param account The account being withdrawn from
+	 * @param account The Account being withdrawn from
 	 * @param amount The amount being withdrawn
 	 * @return 0 if withdrawal successful, 1 if funds insufficient, -1 if account doesn't exist
 	 */
@@ -130,11 +127,11 @@ public class AccountDatabase {
 		
 		int index = find(account);
 		
-		if (account == null || index == -1 || amount < 0) {
+		if (account == null || index == -1 || amount < 0) {		//check if account exists, invalid amount
 			return -1;
 		}
 		
-		else if (amount > accounts[index].getBalance()) {
+		else if (amount > accounts[index].getBalance()) {		//check if funds insufficient
 			return 1;
 		}
 		
@@ -148,6 +145,7 @@ public class AccountDatabase {
 		return 0; 
 	}
 	
+	
 	/**
 	 * Perform selection sort on accounts in database
 	 * Sort by the dates the accounts were opened
@@ -159,10 +157,10 @@ public class AccountDatabase {
 		
 		for (int i = 0; i < numAccounts-1; i++) {
 			
-			// Set left side index to min_idx
+			
 			int min_idx = i;
 			
-			// Compare left side index with iterator j
+			
 			for (int j = i+1; j < numAccounts; j++) {
 				
 				// Retrieve last name of two that you are comparing
@@ -182,7 +180,7 @@ public class AccountDatabase {
 	}
 	
 	/**
-	 * Perform selection sort on account in database
+	 * Perform selection sort on accounts in database
 	 * Sort by the last names of the account holders
 	 */
 	private void sortByLastName() { 
@@ -193,10 +191,10 @@ public class AccountDatabase {
 		
 		for (int i = 0; i < numAccounts-1; i++) {
 			
-			// Set left side index to min_idx
+			
 			int min_idx = i;
 			
-			// Compare left side index with iterator j
+			
 			for (int j = i+1; j < numAccounts; j++) {
 				
 				// Retrieve last name of two that you are comparing
@@ -216,6 +214,7 @@ public class AccountDatabase {
 		}
 	}
 	
+	
 	/**
 	 * Prints the list of accounts by the dates they were opened
 	 * Includes starting balance and ending balance, with fees and interest
@@ -228,18 +227,19 @@ public class AccountDatabase {
 			System.out.println("--Printing statements by date opened--");
 			
 			
-			//String.format("%.2f", balance)
 			for (int i = 0; i < size; i++) {
+				
 				System.out.println();
 				System.out.println(accounts[i].toString());
 				accounts[i].setBalance(accounts[i].monthlyInterest(), accounts[i].monthlyFee());
 				System.out.println("-interest: $ " + String.format("%.2f", accounts[i].monthlyInterest()));
 				System.out.println("-fee: $ " + String.format("%.2f", accounts[i].monthlyFee()));
 				System.out.println("-new balance: $ " + (String.format("%.2f", accounts[i].getBalance())));
+				
 			}
 		
 			System.out.println("--end of listing--");
-			System.out.println();
+			
 		}
 		
 		else {
@@ -247,6 +247,7 @@ public class AccountDatabase {
 		}
 		
 	}
+	
 	
 	/** 
 	 * Prints the list of accounts by the last names of the holders
@@ -270,8 +271,7 @@ public class AccountDatabase {
 				System.out.println("-new balance: $ " + (String.format("%.2f", accounts[i].getBalance())));
 			}
 			
-			System.out.println("--end of printing--");
-			System.out.println();	
+			System.out.println("--end of printing--");	
 			
 		}
 		
@@ -288,16 +288,13 @@ public class AccountDatabase {
 		
 		if(size > 0) {
 			
-			System.out.println();
 			System.out.println("--Listing accounts in the database--");
 
 			for (int i = 0; i < size; i++) {
-				System.out.println();
 				System.out.println(accounts[i].toString());
 			}
 			
-			System.out.println("--end of listing--");
-			System.out.println();	
+			System.out.println("--end of listing--");	
 			
 		}
 

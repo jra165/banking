@@ -1,9 +1,7 @@
-import java.text.DecimalFormat;
-
 /**
- * MoneyMarket represents a subclass of Account with the properties and methods associated with the MoneyMarket object
+ * MoneyMarket is a subclass of Account with the properties and methods associated with the MoneyMarket object
  * Properties and methods inherited from Account class
- * Additional methods include monthlyInterest, monthlyFee
+ * Additional methods include monthlyInterest, monthlyFee, toString, equals
  * @author Joshua Atienza, Kyle Lee
  *
  */
@@ -13,7 +11,7 @@ public class MoneyMarket extends Account {
 	
 	/**
 	 * Creates a MoneyMarket account with the specified holder, balance, and date opened
-	 * Constructor intended to only be used with open account methods
+	 * Constructor intended for open account methods
 	 * @param holder The holder of the account
 	 * @param balance The balance of the account
 	 * @param dateOpen The date the account was opened
@@ -25,7 +23,7 @@ public class MoneyMarket extends Account {
 	
 	/** 
 	 * Creates a MoneyMarket account with the specified holder
-	 * Constructor intended to only be used with withdraw, deposit, and close methods
+	 * Constructor intended for withdraw, deposit, and close methods
 	 * @param profile The profile of the holder
 	 */
 	public MoneyMarket(Profile profile) {
@@ -34,7 +32,7 @@ public class MoneyMarket extends Account {
 	
 	
 	/**
-	 * For case in which withdrawal is successful we increment withdrawal total
+	 * For case in which withdrawal is successful, we increment number of withdrawals
 	 */
 	public void setWithdrawals() {
 		this.withdrawals++;
@@ -48,15 +46,13 @@ public class MoneyMarket extends Account {
 	@Override
 	public double monthlyInterest() {
 		
-		//DecimalFormat df = new DecimalFormat("0.00");
 		final double annualInterestRate = 0.0065;
 		int period = 12;
 		final double monthlyInterestRate = annualInterestRate/period;
 		double monthlyInterest = getBalance() * monthlyInterestRate;
 		
-		//String strMonthlyInterest = df.format(monthlyInterest);
-		
 		return monthlyInterest;
+		
 	}
 
 	/**
@@ -66,12 +62,10 @@ public class MoneyMarket extends Account {
 	@Override
 	public double monthlyFee() {
 		
-		//DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 2500;
 		final double moneyMarketMonthlyFee = 12;
 		
-		// change withdrawal in future, catch check in TransactionManager.java
 		if(getBalance() >= threshold) {
 			if (withdrawals > 6) {
 				monthlyFee = moneyMarketMonthlyFee;
@@ -83,8 +77,6 @@ public class MoneyMarket extends Account {
 		else {
 			monthlyFee = moneyMarketMonthlyFee; 
 		}
-		
-		//String strMonthlyFee = df.format(monthlyFee);
 
 		return monthlyFee;
 	}
@@ -95,6 +87,7 @@ public class MoneyMarket extends Account {
 	 */
 	@Override
 	public void debit(double amount) { //decrease the balance by amount
+		
 		super.debit(amount);
 		setWithdrawals();
 		

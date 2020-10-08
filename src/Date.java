@@ -1,5 +1,5 @@
 /**
-The Date class represents the properties and methods associated with the Date object.
+The Date class contains the properties and methods associated with the Date object.
 Properties include year, month, day
 Methods include getYear, getMonth, getDay, compareTo, toString, isValid, isLeap
 @author Joshua Atienza, Kyle Lee
@@ -49,7 +49,7 @@ public class Date implements Comparable<Date> {
 	 * Compares a Date with another Date
 	 * Compares the year, month, and date to determine which comes first
 	 * @param o The Date being compared to
-	 * @return -1 if date older than date in parameter, 0 if dates equal, 1 if date younger than date in parameter
+	 * @return -1 if date comes before date in parameter, 0 if dates equal, 1 if date comes after date in parameter
 	 */
 	@Override
 	public int compareTo(Date o) {
