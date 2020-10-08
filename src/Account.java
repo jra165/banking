@@ -30,6 +30,10 @@ public abstract class Account {
 	}
 	
 	
+	public void setBalance(double interest, double fee) {
+		this.balance = this.balance + interest - fee;
+	}
+	
 	public void debit(double amount) { //decrease the balance by amount
 		balance -= amount;
 	}
