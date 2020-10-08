@@ -1,5 +1,5 @@
 /**
- * The Profile class represents the properties and methods associated with the Profile object.
+ * The Profile class contains the properties and methods associated with the Profile object.
  * Properties include first name and last name
  * Methods include get_fname, get_lname, equals
  * @author Joshua Atienza, Kyle Lee

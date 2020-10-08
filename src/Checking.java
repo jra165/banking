@@ -1,9 +1,7 @@
-import java.text.DecimalFormat;
-
 /**
- * Checking represents a subclass of Account with the properties and methods associated with the Checking object
+ * Checking is a subclass of Account with the properties and methods associated with the Checking object
  * Properties and methods inherited from Account class
- * Additional methods include monthlyInterest, monthlyFee
+ * Additional methods include monthlyInterest, monthlyFee, toString, and equals
  * @author Joshua Atienza, Kyle Lee
  *
  */
@@ -13,7 +11,7 @@ public class Checking extends Account {
 	
 	/**
 	 * Creates a Checking account with specified holder, balance, dateOpen, directDeposit
-	 * Constructor intended to only be used with open account methods
+	 * Constructor intended for open account methods
 	 * @param holder The holder of the account
 	 * @param balance The balance of the account
 	 * @param dateOpen The date the account was opened
@@ -24,9 +22,10 @@ public class Checking extends Account {
 		this.directDeposit = directDeposit;
 	}
 
+	
 	/** 
 	 * Creates a Checking account with the specified holder
-	 * Constructor intended to only be used with withdraw, deposit, close methods
+	 * Constructor intended for withdraw, deposit, close methods
 	 * @param profile The profile of the holder
 	 */
 	public Checking(Profile profile) {
@@ -35,32 +34,30 @@ public class Checking extends Account {
 
 
 	/** 
-	 * Calculates the monthly interest of checking account
-	 * @return monthlyInterest The monthly interest associated with a specific checking account
+	 * Calculates the monthly interest of Checking account
+	 * @return monthlyInterest The monthly interest associated with a specific Checking account
 	 */
 	@Override
 	public double monthlyInterest() {
 		
-		//DecimalFormat df = new DecimalFormat("0.00");
 		final double annualInterestRate = 0.0005;
 		int period = 12;
 		
 		final double monthlyInterestRate = annualInterestRate/period;
 		double monthlyInterest = getBalance() * monthlyInterestRate;
 		
-		//String strMonthlyInterest = df.format(monthlyInterest);
-		
 		return monthlyInterest;
+		
 	}
 
+	
 	/**
-	 * Calculates the monthly fee of checking account
-	 * @return monthlyFee The monthly fee associated with a specific checking account
+	 * Calculates the monthly fee of Checking account
+	 * @return monthlyFee The monthly fee associated with a specific Checking account
 	 */
 	@Override
 	public double monthlyFee() {
 		
-		//DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 1500;
 		final double checkingMonthlyFee = 25;
@@ -71,11 +68,10 @@ public class Checking extends Account {
 		else {
 			monthlyFee = checkingMonthlyFee;
 		}
-
-		//String strMonthlyFee = df.format(monthlyFee);
 		
 		return monthlyFee;
 	}
+	
 	
 	/**
 	 * Converts Checking account to its String representation
@@ -96,6 +92,7 @@ public class Checking extends Account {
 		return accountInfo;
 	}
 	
+	
 	/**
 	 * Checks if Checking is equivalent to obj being compared to.
 	 * Checks if obj instanceof Checking and if all data fields are equivalent
@@ -108,20 +105,6 @@ public class Checking extends Account {
 			return true;
 		}
 		return false;
-	}
-	
-	
-	public static void main(String[] args) {
-		
-		Profile Kyle = new Profile("Kyle", "Lee");
-		Date open = new Date("10/6/20");
-		double amount = 500;
-		boolean directDeposit = true;
-		
-		Checking capitalOne = new Checking(Kyle, amount, open, directDeposit);
-		System.out.println(capitalOne.monthlyInterest());
-		//System.out.println(capitalOne.toString());
-		
 	}
 	
 	

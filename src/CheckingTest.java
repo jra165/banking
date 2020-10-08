@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
  */
 
 /**
- * @author joshua.atienza
- *
+ * The CheckingTest class is a class that runs JUnit Tests on the monthlyInterest/Fee methods of Checking
+ * Each test case uses the assertEquals method to compare expected and actual interest/fees
+ * @author Joshua Atienza, Kyle Lee
+ * 
  */
 class CheckingTest {
 
@@ -20,16 +22,17 @@ class CheckingTest {
 	void testMonthlyInterest() {
 		
 		Profile jra = new Profile("Joshua", "Atienza");
-		double balance = 24000;
+		final double BALANCE = 24000;												//sample balance
 		Date dateOpened = new Date("09/26/2020");
 		boolean directDeposit = true;
 		
-		Checking checking = new Checking(jra, balance, dateOpened, directDeposit);
+		Checking checking = new Checking(jra, BALANCE, dateOpened, directDeposit);
 		
-		double expectedInterest = 1;
+		final double EXPECTED_INTEREST = 1;											//expected interest
 		double result = checking.monthlyInterest();
 		
-		assertEquals(expectedInterest, result);
+		//checks if expected interest and actual interest are equal
+		assertEquals(EXPECTED_INTEREST, result);
 		
 	}
 
@@ -42,56 +45,65 @@ class CheckingTest {
 		
 		//Case 1: Checking account is direct deposit, balance >= threshold of 1500
 		Profile kl = new Profile("Kyle", "Lee");
-		double balance1 = 2000 ;
+		final double BALANCE_C1 = 2000 ;											//sample balance
 		Date dateOpened1 = new Date("02/26/2020");
 		boolean directDeposit1 = true;
 		
-		Checking lee = new Checking(kl, balance1, dateOpened1, directDeposit1);
+		Checking lee = new Checking(kl, BALANCE_C1, dateOpened1, directDeposit1);
 		
-		double expectedFee1 = 0;
+		final double EXPECTED_FEE_C1 = 0;											//expected monthly fee
 		double result1 = lee.monthlyFee();
 		
-		assertEquals(expectedFee1, result1);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C1, result1);
+		
+		
 		
 		//Case 2: Checking account is direct deposit, balance < threshold of 1500
 		Profile jp = new Profile("JP", "Edralin");
-		double balance2 = 500 ;
+		final double BALANCE_C2 = 500 ;												//sample balance
 		Date dateOpened2 = new Date("04/11/2020");
 		boolean directDeposit2 = true;
 		
-		Checking edralin = new Checking(jp, balance2, dateOpened2, directDeposit2);
+		Checking edralin = new Checking(jp, BALANCE_C2, dateOpened2, directDeposit2);
 		
-		double expectedFee2 = 0;
+		final double EXPECTED_FEE_C2 = 0;											//expected monthly fee
 		double result2 = edralin.monthlyFee();
 		
-		assertEquals(expectedFee2, result2);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C2, result2);
+		
 		
 		
 		//Case 3: Checking account is NOT direct deposit, balance >= threshold of 1500
 		Profile oz = new Profile("Owen", "Zhang");
-		double balance3 = 2000 ;
+		final double BALANCE_C3 = 2000 ;											//sample balance
 		Date dateOpened3 = new Date("11/19/2020");
 		boolean directDeposit3 = false;
 		
-		Checking zhang = new Checking(oz, balance3, dateOpened3, directDeposit3);
+		Checking zhang = new Checking(oz, BALANCE_C3, dateOpened3, directDeposit3);
 		
-		double expectedFee3 = 0;
+		final double EXPECTED_FEE_C3 = 0;											//expected monthly fee
 		double result3 = zhang.monthlyFee();
 		
-		assertEquals(expectedFee3, result3);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C3, result3);
+		
+		
 		
 		//Case 4: Checking account is NOT direct deposit, balance < threshold of 1500
 		Profile kc = new Profile("Ken", "Chang");
-		double balance4 = 100 ;
+		final double BALANCE_C4 = 100 ;												//sample balance
 		Date dateOpened4 = new Date("07/11/2020");
 		boolean directDeposit4 = false;
 		
-		Checking chang = new Checking(kc, balance4, dateOpened4, directDeposit4);
+		Checking chang = new Checking(kc, BALANCE_C4, dateOpened4, directDeposit4);
 		
-		double expectedFee4 = 25;
+		final double EXPECTED_FEE_C4 = 25;											//expected monthly fee
 		double result4 = chang.monthlyFee();
 		
-		assertEquals(expectedFee4, result4);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C4, result4);
 		
 	}
 

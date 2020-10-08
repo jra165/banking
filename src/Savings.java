@@ -1,7 +1,5 @@
-import java.text.DecimalFormat;
-
 /**
- * Savings represents a subclass of Account with the properties and methods associated with the Savings object
+ * Savings is a subclass of Account with the properties and methods associated with the Savings object
  * Properties and methods inherited from Account class
  * Additional methods include monthlyInterest, monthlyFee, toString, and equals
  * @author Joshua Atienza, Kyle Lee
@@ -13,7 +11,7 @@ public class Savings extends Account {
 	
 	/**
 	 * Creates a Savings account with the specified holder, balance, date opened, and loyalty status
-	 * Constructor intended to only be used with open account methods
+	 * Constructor intended for open account methods
 	 * @param holder The holder of the account
 	 * @param balance The balance of the account
 	 * @param dateOpen The date the account was opened
@@ -26,7 +24,7 @@ public class Savings extends Account {
 	
 	/**
 	 * Creates a Savings account with the specified holder
-	 * Constructor intended to only be used with withdraw, deposit, and close methods
+	 * Constructor intended for withdraw, deposit, and close methods
 	 * @param profile The profile of the holder
 	 */
 	public Savings(Profile profile) {
@@ -34,13 +32,12 @@ public class Savings extends Account {
 	}
 	
 	/** 
-	 * Calculates the monthly interest of savings account
-	 * @return monthlyInterest The monthly interest associated with a specific savings account
+	 * Calculates the monthly interest of Savings account
+	 * @return monthlyInterest The monthly interest associated with a specific Savings account
 	 */
 	@Override
 	public double monthlyInterest() {
 		
-		//DecimalFormat df = new DecimalFormat("0.00");
 		final double annualInterestRate = 0.0025;
 		int period = 12;
 		
@@ -56,21 +53,18 @@ public class Savings extends Account {
 			monthlyInterest = getBalance() * monthlyInterestRate;
 		}
 		
-		//String strMonthlyInterest = df.format(monthlyInterest);
-		
 		
 		return monthlyInterest;
 	
 	}
 	
 	/**
-	 * Calculates the monthly fee of savings account
-	 * @return monthlyFee The monthly fee associated with a specific savings account
+	 * Calculates the monthly fee of Savings account
+	 * @return monthlyFee The monthly fee associated with a specific Savings account
 	 */
 	@Override
 	public double monthlyFee() {
 		
-		//DecimalFormat df = new DecimalFormat("0.00");
 		double monthlyFee;
 		final double threshold = 300;
 		final double savingsMonthlyFee = 5;
@@ -81,8 +75,7 @@ public class Savings extends Account {
 		else {
 			monthlyFee = savingsMonthlyFee;
 		}
-		
-		//String strMonthlyFee = df.format(monthlyFee);
+
 
 		return monthlyFee;
 		
@@ -121,17 +114,5 @@ public class Savings extends Account {
 		return false;
 	}
 	
-	
-	public static void main(String[] args) {
-		
-		Profile Kyle = new Profile("Kyle", "Lee");
-		Date open = new Date("10/6/20");
-		double amount = 20.05;
-		boolean directDeposit = false;
-		
-		Savings jpMorganChase = new Savings(Kyle, amount, open, directDeposit);
-		System.out.println(jpMorganChase.toString());
-		
-	}
 
 }

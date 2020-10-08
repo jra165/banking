@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Test;
  */
 
 /**
- * @author joshua.atienza
+ * The MoneyMarketTest class is a class that runs JUnit Tests on the monthlyInterest/Fee methods of MoneyMarket
+ * Each test case uses the assertEquals method to compare expected and actual interest/fees
+ * @author Joshua Atienza, Kyle Lee
  *
  */
 class MoneyMarketTest {
@@ -20,15 +22,16 @@ class MoneyMarketTest {
 	void testMonthlyInterest() {
 		
 		Profile jra = new Profile("Joshua", "Reyes");
-		double balance = 24000;
+		final double BALANCE = 24000;								//sample balance
 		Date dateOpened = new Date("09/26/2020");
 		
-		MoneyMarket mm = new MoneyMarket(jra, balance, dateOpened);
+		MoneyMarket mm = new MoneyMarket(jra, BALANCE, dateOpened);
 		
-		double expectedInterest = 13;
+		final double EXPECTED_INTEREST = 13;						//expected monthly interest
 		double result = mm.monthlyInterest();
 		
-		assertEquals(expectedInterest, result);
+		//checks if expected interest and actual interest are equal
+		assertEquals(EXPECTED_INTEREST, result);
 		
 	}
 
@@ -41,13 +44,13 @@ class MoneyMarketTest {
 		
 		//Case 1: MoneyMarket has > 6 withdrawals, balance >= threshold of 2500
 		Profile js = new Profile("Jasmine","Shen");
-		double balance1 = 2500;
+		final double BALANCE_C1 = 2500;								//sample balance
 		Date dateOpened1 = new Date("09/16/2020");
 		
 		
+		MoneyMarket shen = new MoneyMarket(js, BALANCE_C1, dateOpened1);
 		
-		MoneyMarket shen = new MoneyMarket(js, balance1, dateOpened1);
-		
+		//set number of withdrawals to 7, which is greater than the threshold
 		shen.setWithdrawals();
 		shen.setWithdrawals();
 		shen.setWithdrawals();
@@ -57,19 +60,22 @@ class MoneyMarketTest {
 		shen.setWithdrawals();
 		
 		
-		double expectedFee1 = 12;
+		final double EXPECTED_FEE_C1 = 12;							//expected monthly fee
 		double result1 = shen.monthlyFee();
 		
-		assertEquals(expectedFee1, result1);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C1, result1);
+		
 		
 		
 		//Case 2: MoneyMarket has > 6 withdrawals, balance < threshold of 2500
 		Profile at = new Profile("Alissa","Tsai");
-		double balance2 = 500;
+		final double BALANCE_C2 = 500;								//sample balance
 		Date dateOpened2 = new Date("02/14/2020");
 		
-		MoneyMarket tsai = new MoneyMarket(at, balance2, dateOpened2);
+		MoneyMarket tsai = new MoneyMarket(at, BALANCE_C2, dateOpened2);
 		
+		//set number of withdrawals to 7, which is greater than the threshold
 		tsai.setWithdrawals();
 		tsai.setWithdrawals();
 		tsai.setWithdrawals();
@@ -78,41 +84,48 @@ class MoneyMarketTest {
 		tsai.setWithdrawals();
 		tsai.setWithdrawals();
 		
-		double expectedFee2 = 12;
+		final double EXPECTED_FEE_C2 = 12;								//expected monthly fee
 		double result2 = tsai.monthlyFee();
 		
-		assertEquals(expectedFee2, result2);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C2, result2);
+		
 		
 		
 		//Case 3: MoneyMarket has <= 6 withdrawals, balance >= threshold of 2500
 		Profile jc = new Profile("Joanna","Cui");
-		double balance3 = 4000;
+		final double BALANCE_C3 = 4000;									//sample balance
 		Date dateOpened3 = new Date("10/02/2020");
 		
-		MoneyMarket cui = new MoneyMarket(jc, balance3, dateOpened3);
+		MoneyMarket cui = new MoneyMarket(jc, BALANCE_C3, dateOpened3);
 		
+		//set number of withdrawals to 2, which is less than the threshold
 		cui.setWithdrawals();
 		cui.setWithdrawals();
 		
-		double expectedFee3 = 0;
+		final double EXPECTED_FEE_C3 = 0;								//expected monthly fee
 		double result3 = cui.monthlyFee();
 		
-		assertEquals(expectedFee3, result3);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C3, result3);
 		
+
 		
 		//Case 4: MoneyMarket has <= 6 withdrawals, balance < threshold of 2500
 		Profile cc = new Profile("Cleo","Chang");
-		double balance4 = 200;
+		final double BALANCE_C4 = 200;									//sample balance
 		Date dateOpened4 = new Date("08/10/2020");
 		
-		MoneyMarket changg = new MoneyMarket(cc, balance4, dateOpened4);
+		MoneyMarket changg = new MoneyMarket(cc, BALANCE_C4, dateOpened4);
 		
+		//set number of withdrawals to 1, which is less than the threshold
 		changg.setWithdrawals();
 		
-		double expectedFee4 = 12;
+		final double EXPECTED_FEE_C4 = 12;								//expected monthly fee
 		double result4 = changg.monthlyFee();
 		
-		assertEquals(expectedFee4, result4);
+		//checks if expected fee and actual fee are equal
+		assertEquals(EXPECTED_FEE_C4, result4);
 		
 		
 	}
