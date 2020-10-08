@@ -27,7 +27,7 @@ public class AccountDatabase {
 	
 	public boolean add(Account account) {
 		
-		if (find(account) != -1) {
+		if (find(account) != -1 || !account.getDateOpen().isValid()) {
 			return false;
 		}
 		
@@ -95,6 +95,9 @@ public class AccountDatabase {
 		
 		else { 
 			accounts[index].debit(amount);
+			if (account instanceof MoneyMarket) {
+				((MoneyMarket) account).setWithdrawals();
+			}
 		}
 		
 		return 0; 

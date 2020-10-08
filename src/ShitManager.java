@@ -64,6 +64,7 @@ public class ShitManager {
 			boolean is_six_tokens = checkTokens(command, open_tokens);
 			String com = "";
 
+			outer:
 			while(s.hasNext()) {
 
 				try {
@@ -90,7 +91,7 @@ public class ShitManager {
 						
 						else if(com.equals("Q")) {
 							System.out.println("Transaction processing completed.");
-							break;
+							break outer;
 						}
 						
 						else {
@@ -128,7 +129,7 @@ public class ShitManager {
 							else if(com.equals("CM")) {
 								 
 								// Create a new Money Market Account based on profile (invoke constructor 2)
-								Account currMoneyMarketAcc = new Savings(profile);
+								Account currMoneyMarketAcc = new MoneyMarket(profile);
 								closed = db.remove(currMoneyMarketAcc);	// remove that account from the array
 							}
 							 
@@ -210,6 +211,12 @@ public class ShitManager {
 							else if (com.equals("WM")) {
 								Account currMoneyMarketAcc = new MoneyMarket(profile);
 								withdrawn = db.withdrawal(currMoneyMarketAcc, balance);
+								
+								//if (withdrawn == 0) {
+									//System.out.println("here i am");
+								//	((MoneyMarket)currMoneyMarketAcc).setWithdrawals();
+								//}
+								
 							}
 							 
 							if (withdrawn == 0) {
@@ -244,17 +251,23 @@ public class ShitManager {
 							Profile profile = new Profile(fName, lName);
 							Date dateOpen = new Date(date);
 							boolean opened = false;
-
-							MoneyMarket moneymarket = new MoneyMarket(profile, balance, dateOpen);
-							opened = db.add(moneymarket);
 							
-							if(opened == true) {
-								System.out.println("Account opened and added to the database");
+							if (dateOpen.isValid()) {
+								MoneyMarket moneymarket = new MoneyMarket(profile, balance, dateOpen);
+								opened = db.add(moneymarket);
+								
+								if(opened == true) {
+									System.out.println("Account opened and added to the database");
+								}
+								
+								else {
+									System.out.println("Account is already in the database.");
+								}
 							}
-							
 							else {
-								System.out.println("Account is already in the database.");
+								System.out.println(date + " is not a valid date!");
 							}
+							
 								 
 						}
 						
@@ -283,24 +296,37 @@ public class ShitManager {
 							
 							//magic numbers
 							if(com.equals("OC")) {
-								Checking checking = new Checking(profile, balance, dateOpen, special);
-								opened = db.add(checking);
+								if (dateOpen.isValid()) {
+									Checking checking = new Checking(profile, balance, dateOpen, special);
+									opened = db.add(checking);
+									if(opened == true) {
+										System.out.println("Account opened and added to the database");
+									}
+									
+									else {
+										System.out.println("Account is already in the database.");
+									}
+								}
+								else {
+									System.out.println(date + " is not a valid date!");
+								}
 							} 
 								 
 							else if(com.equals("OS")) {
-									 
-								Savings savings = new Savings(profile, balance, dateOpen, special);
-								opened = db.add(savings);
-									 
-							}
-						
-							
-							if(opened == true) {
-								System.out.println("Account opened and added to the database");
-							}
-							
-							else {
-								System.out.println("Account is already in the database.");
+								if (dateOpen.isValid()) {
+									Savings savings = new Savings(profile, balance, dateOpen, special);
+									opened = db.add(savings);
+									if(opened == true) {
+										System.out.println("Account opened and added to the database");
+									}
+									
+									else {
+										System.out.println("Account is already in the database.");
+									}
+								}
+								else {
+									System.out.println(date + " is not a valid date!");
+								}
 							}
 							 
 						}
@@ -326,7 +352,7 @@ public class ShitManager {
 			}
 			
 			s.close();
-			
+			break;
 		}
 		
 		sc.close();

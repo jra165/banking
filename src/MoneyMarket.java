@@ -15,7 +15,9 @@ public class MoneyMarket extends Account {
 	
 	// For case in which withdrawal is successful we increment withdrawal total
 	public void setWithdrawals() {
+		System.out.println("DEBUG");
 		this.withdrawals++;
+		System.out.println("Withdrawals: " + this.withdrawals);
 	}
 	
 
@@ -55,15 +57,22 @@ public class MoneyMarket extends Account {
 	}
 	
 	@Override
+	public void debit(double amount) { //decrease the balance by amount
+		super.debit(amount);
+		setWithdrawals();
+		
+	}
+	
+	@Override
 	public String toString() {
 		
 		String accountInfo;
 		
 		if (withdrawals == 1) {
-			accountInfo = "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawal*";
+			accountInfo = "*Money Market*" + super.toString() + "*" + this.withdrawals + " withdrawal*";
 		}
 		else {
-			accountInfo = "*Money Market*" + super.toString() + "*" + withdrawals + " withdrawals*";
+			accountInfo = "*Money Market*" + super.toString() + "*" + this.withdrawals + " withdrawals*";
 		}
 		
 		return accountInfo;
