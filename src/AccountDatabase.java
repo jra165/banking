@@ -163,57 +163,77 @@ public class AccountDatabase {
 	
 	public void printByDateOpen() { 
 		
-		sortByDateOpen();
-		
-		
-		System.out.println();
-		System.out.println("--Printing statements by last name--");
-		
-		for (int i = 0; i < size; i++) {
+		if(size > 0) {
+			sortByDateOpen();
 			System.out.println();
-			System.out.println(accounts[i].toString());
-			System.out.println("-interest: $ " + accounts[i].monthlyInterest());
-			System.out.println("-fee: $ " + accounts[i].monthlyFee());
-			System.out.println("-new balance: $ " + accounts[i].getBalance());
+			System.out.println("--Printing statements by last name--");
+			
+			for (int i = 0; i < size; i++) {
+				System.out.println();
+				System.out.println(accounts[i].toString());
+				System.out.println("-interest: $ " + accounts[i].monthlyInterest());
+				System.out.println("-fee: $ " + accounts[i].monthlyFee());
+				System.out.println("-new balance: $ " + accounts[i].getBalance());
+			}
+		
+			System.out.println("--end of listing--");
+			System.out.println();
 		}
-	
-		System.out.println("--end of listing--");
-		System.out.println();
+		
+		else {
+			System.out.println("Database is empty.");
+		}
 		
 	}
 	
 	public void printByLastName() { 
 		
-		sortByLastName();
-		
-		System.out.println();
-		System.out.println("--Printing statements by last name--");
-		
-		for (int i = 0; i < size; i++) {
+		if(size > 0) {
+			
+			sortByLastName();
+			
 			System.out.println();
-			System.out.println(accounts[i].toString());
-			System.out.println("-interest: $ " + accounts[i].monthlyInterest());
-			System.out.println("-fee: $ " + accounts[i].monthlyFee());
-			System.out.println("-new balance: $ " + accounts[i].getBalance());
+			System.out.println("--Printing statements by last name--");
+			
+			for (int i = 0; i < size; i++) {
+				System.out.println();
+				System.out.println(accounts[i].toString());
+				System.out.println("-interest: $ " + accounts[i].monthlyInterest());
+				System.out.println("-fee: $ " + accounts[i].monthlyFee());
+				System.out.println("-new balance: $ " + accounts[i].getBalance());
+			}
+			
+			System.out.println("--end of printing--");
+			System.out.println();	
+			
 		}
 		
-		System.out.println("--end of printing--");
-		System.out.println();
-		
+		else {
+			System.out.println("Database is empty.");
+		}
+
 	}
 	
 	public void printAccounts() { 
 		
-		System.out.println();
-		System.out.println("--Listing accounts in the database--");
-		
-		for (int i = 0; i < size; i++) {
+		if(size > 0) {
+			
 			System.out.println();
-			System.out.println(accounts[i].toString());
+			System.out.println("--Listing accounts in the database--");
+			
+			for (int i = 0; i < size; i++) {
+				System.out.println();
+				System.out.println(accounts[i].toString());
+			}
+			
+			System.out.println("--end of listing--");
+			System.out.println();	
+			
 		}
-		
-		System.out.println("--end of listing--");
-		System.out.println();
+
+		else {
+			System.out.println("Database is empty.");
+		}
 		
 	}
 	
