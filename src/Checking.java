@@ -115,11 +115,12 @@ public class Checking extends Account {
 		
 		Profile Kyle = new Profile("Kyle", "Lee");
 		Date open = new Date("10/6/20");
-		double amount = 1234.567;
+		double amount = 500;
 		boolean directDeposit = true;
 		
 		Checking capitalOne = new Checking(Kyle, amount, open, directDeposit);
-		System.out.println(capitalOne.toString());
+		System.out.println(capitalOne.monthlyInterest());
+		//System.out.println(capitalOne.toString());
 		
 	}
 	
